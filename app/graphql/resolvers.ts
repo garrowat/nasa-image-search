@@ -20,14 +20,14 @@ const resolvers: IResolvers = {
         },
         {
           id: "NHQ201907180121",
-          href: "https://images-assets.nasa.gov/image/NHQ201907180120/NHQ201907180120~thumb.jpg",
+          href: "https://images-assets.nasa.gov/image/NHQ201907190147/NHQ201907190147~thumb.jpg",
           description:
             "The Moon to Mars exhibit is seen at the Apollo 11 50th Anniversary celebration on the National Mall, Thursday, July 18, 2019 in Washington. Apollo 11 was the first mission to land astronauts on the Moon and launched on July 16, 1969 with astronauts Neil Armstrong, Michael Collins, and Buzz Aldrin. Photo Credit: (NASA/Connie Moore)",
           title: "Apollo 11 50th Anniversary Celebration",
         },
         {
           id: "NHQ201907180122",
-          href: "https://images-assets.nasa.gov/image/NHQ201907180120/NHQ201907180120~thumb.jpg",
+          href: "https://images-assets.nasa.gov/image/NHQ201907180107/NHQ201907180107~thumb.jpg",
           description:
             "The Moon to Mars exhibit is seen at the Apollo 11 50th Anniversary celebration on the National Mall, Thursday, July 18, 2019 in Washington. Apollo 11 was the first mission to land astronauts on the Moon and launched on July 16, 1969 with astronauts Neil Armstrong, Michael Collins, and Buzz Aldrin. Photo Credit: (NASA/Connie Moore)",
           title: "Apollo 11 50th Anniversary Celebration",
