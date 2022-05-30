@@ -1,4 +1,6 @@
 import { useLoaderData } from "@remix-run/react";
+import graphqlClient from "~/graphql/client";
+import gql from "graphql-tag";
 
 export function links() {
   return [
@@ -10,12 +12,19 @@ export function links() {
 }
 
 export const loader = async () => {
-  // some code here
-  return [
-    { href: "", description: "", title: "" },
-    { href: "", description: "", title: "" },
-    { href: "", description: "", title: "" },
-  ];
+  const res = await graphqlClient.query({
+    query: gql`
+      query getImages {
+        images {
+          id
+          href
+          title
+          description
+        }
+      }
+    `,
+  });
+  return res;
 };
 
 const GalleryList = ({ children }) => (
@@ -23,7 +32,9 @@ const GalleryList = ({ children }) => (
 );
 
 const GalleryItem = ({ children }) => (
-  <li style={{ height: "40vh", flexGrow: 1, listStyleType: "none" }}>{children}</li>
+  <li style={{ height: "40vh", flexGrow: 1, listStyleType: "none" }}>
+    {children}
+  </li>
 );
 
 const GalleryImage = ({ ...props }) => (
@@ -40,7 +51,8 @@ const GalleryImage = ({ ...props }) => (
 );
 
 export default function Index() {
-  const data = useLoaderData();
+  const queryResults = useLoaderData();
+  const searchResults = queryResults?.data.images;
 
   return (
     <div>
@@ -65,7 +77,7 @@ export default function Index() {
                 gap: "10px",
               }}
             >
-              <label for="search">Search for an Image:</label>
+              <label htmlFor="search">Search for an Image:</label>
               <input
                 type="text"
                 name="search"
@@ -83,15 +95,15 @@ export default function Index() {
       </div>
       <div>
         <GalleryList>
-          <GalleryItem>
-            <GalleryImage src="https://images-assets.nasa.gov/image/NHQ201907180120/NHQ201907180120~thumb.jpg" />
-          </GalleryItem>
-          <GalleryItem>
-            <GalleryImage src="https://images-assets.nasa.gov/image/NHQ201907180108/NHQ201907180108~thumb.jpg" />
-          </GalleryItem>
-          <GalleryItem>
-            <GalleryImage src="https://images-assets.nasa.gov/image/NHQ201907190146/NHQ201907190146~thumb.jpg" />
-          </GalleryItem>
+          {searchResults &&
+            searchResults?.map((searchResult) => (
+              <GalleryItem key={searchResult.id}>
+                <GalleryImage
+                  alt={searchResult.title}
+                  src={searchResult.href}
+                />
+              </GalleryItem>
+            ))}
         </GalleryList>
       </div>
     </div>
