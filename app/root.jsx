@@ -9,7 +9,7 @@ import {
 
 export const meta = () => ({
   charset: "utf-8",
-  title: "New Remix App",
+  title: "Nasa Image Search",
   viewport: "width=device-width,initial-scale=1",
 });
 
